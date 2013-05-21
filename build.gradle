@@ -1,0 +1,35 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'application'
+
+mainClassName = 'org.svenehrke.javafxswing.Main'
+
+group='org.svenehrke.javafxswing'
+version = '0.0.1'
+
+idea {
+	project {
+		jdkName = '1.7'
+	}
+	module {
+		downloadSources = false
+		downloadJavadoc = false
+	}
+}
+repositories {
+	mavenCentral()
+}
+
+def javaHome = System.env['JAVA_HOME']
+
+dependencies {
+	//compile 'org.jfxtras:jfxtras-labs:2.2-r4'
+	compile files("${javaHome}/jre/lib/jfxrt.jar")
+	testCompile group: 'junit', name: 'junit', version: '4.10'
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '1.5'
+}
+
